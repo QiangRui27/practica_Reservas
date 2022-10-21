@@ -8,7 +8,7 @@ include_once("models/timeSlot.php");  // Modelos
 //include_once("models/TimeSlots.php");
 include_once("view.php");
 
-class TimeSlotController {
+class TimeSlotsController {
     
     private $db;
     private $resource , $timeSlot;

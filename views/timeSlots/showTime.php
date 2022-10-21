@@ -20,7 +20,7 @@ echo "<form action='index.php'>
       </form><br>";
 
 // Ahora, la tabla con los datos de los libros
-if (count($listaTimes) == 0) {
+if (count($listaTimeSlots) == 0) {
   echo "No hay datos";
 } else {
   echo "<table  border ='1'>";

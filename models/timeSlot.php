@@ -9,7 +9,7 @@ class TimeSlot extends Model
     // Constructor. Especifica el nombre de la tabla de la base de datos
     public function __construct()
     {
-        $this->table = "Times";
+        $this->table = "TimeSlots";
         $this->idColumn = "id";
         parent::__construct();
     }
