@@ -39,10 +39,10 @@ if (count($listaResources) == 0) {
     echo "<td>" . $fila->description . "</td>";
     echo "<td>" . $fila->location . "</td>";
     echo "<td>" . $fila->image . "</td>";
-    echo "<td><a href='index.php?action=formularioModificarResource&id=" . $fila->id . "'>Modificar</a></td>";
-    echo "<td><a href='index.php?action=borrarResource&id=" . $fila->id . "'>Borrar</a></td>";
+    echo "<td><a href='index.php?controller=ResourcesController&action=formularioModificarResource&id=" . $fila->id . "'>Modificar</a></td>";
+    echo "<td><a href='index.php?controller=ResourcesController&action=borrarResource&id=" . $fila->id . "'>Borrar</a></td>";
     echo "</tr>";
   }
   echo "</table>";
 }
-echo "<p><a href='index.php?action=formularioInsertarResource'>Nuevo</a></p>";
+echo "<p><a href='index.php?controller=ResourcesController&action=formularioInsertarResource'>Nuevo</a></p>";

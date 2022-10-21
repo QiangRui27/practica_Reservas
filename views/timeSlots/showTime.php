@@ -37,10 +37,10 @@ if (count($listaTimeSlots) == 0) {
     echo "<td>" . $fila->dayOfWeek . "</td>";
     echo "<td>" . $fila->startTime . "</td>";
     echo "<td>" . $fila->endTime . "</td>";
-    echo "<td><a href='index.php?action=formularioModificarTimeSlot&id=" . $fila->id . "'>Modificar</a></td>";
-    echo "<td><a href='index.php?action=borrarTimeSlot&id=" . $fila->id . "'>Borrar</a></td>";
+    echo "<td><a href='index.php?controller=TimeSlotsController&action=formularioModificarTimeSlot&id=" . $fila->id . "'>Modificar</a></td>";
+    echo "<td><a href='index.php?controller=TimeSlotsController&action=borrarTimeSlot&id=" . $fila->id . "'>Borrar</a></td>";
     echo "</tr>";
   }
   echo "</table>";
 }
-echo "<p><a href='index.php?action=formularioInsertarTimeSlot'>Nuevo</a></p>";
+echo "<p><a href='index.php?controller=TimeSlotsController&action=formularioInsertarTimeSlot'>Nuevo</a></p>";
