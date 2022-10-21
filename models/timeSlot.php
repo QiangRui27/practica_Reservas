@@ -38,5 +38,15 @@ class TimeSlot extends Model
         return $ok;
     }
 
-
+    public function search($textoBusqueda)
+    {
+        // Buscamos los libros de la biblioteca que coincidan con el texto de búsqueda
+        $result = $this->db->dataQuery("SELECT * FROM TimeSlots
+					                   /* INNER JOIN escriben ON libros.idLibro = escriben.idLibro
+					                    INNER JOIN personas ON escriben.idPersona = personas.idPersona*/
+					                    WHERE dayOfWeek LIKE '%$textoBusqueda%'
+					            
+					                    ORDER BY dayOfWeek");
+        return $result;
+    }
 }
