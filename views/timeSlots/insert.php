@@ -6,7 +6,7 @@
 // Vamos a usar la misma vista para insertar y modificar. Para saber si hacemos una cosa u otra,
 // usaremos la variable $libro: si existe, es porque estamos modificando un libro. Si no, estamos insertando uno nuevo.
 
-    echo "<h1>Inserción de peliculas</h1>";
+    echo "<h1>Inserción de Horario</h1>";
 
 
 
@@ -17,9 +17,9 @@
 // Creamos el formulario con los campos del libro
 echo "<form action = 'index.php' method = 'get'>
         <input type='hidden' name='id' value=''>
-        Día de la semana:<input type='text' name='name' value=''><br>
-        Tiempo inicial:<input type='text' name='description' value=''><br>
-        Tiempo final:<input type='text' name='location' value=''><br>";
+        Día de la semana:<input type='text' name='dayOfWeek' value=''><br>
+        Tiempo inicial:<input type='text' name='startTime' value=''><br>
+        Tiempo final:<input type='text' name='endTime' value=''><br>";
 
 /*echo "Autores: <select name='autor[]' multiple size='3'>";
 foreach ($todosLosAutores as $fila) {
