@@ -28,7 +28,7 @@ class TimeSlot extends Model
     }
 
     // Actualiza un TimeSlot. Devuelve 1 si tiene éxito y 0 en caso de fallo.
-    public function update($id, $dayOfWeek, $startTime, $endTime, $image)
+    public function update($id, $dayOfWeek, $startTime, $endTime)
     {
         $ok = $this->db->dataManipulation("UPDATE TimeSlots SET
                                 dayOfWeek = '$dayOfWeek',
