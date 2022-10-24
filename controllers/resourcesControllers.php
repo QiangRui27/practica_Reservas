@@ -50,7 +50,7 @@ class ResourcesController {
             $data["error"] = "Error al insertar";   
         }
 
-        header("Location: index.php");
+        header("Location: index.php?controller=ResourcesController&action=mostrarListaResources");
 
     }
 
@@ -75,7 +75,7 @@ class ResourcesController {
         } else {
             $data["error"] = "Error al modificar";
         }
-        header("Location: index.php");
+        header("Location: index.php?controller=ResourcesController&action=mostrarListaResources");
 
     }
 
@@ -87,7 +87,7 @@ class ResourcesController {
         } else {
             $data["error"] = "Error al borrar";
         }
-        header("Location: index.php");
+        header("Location: index.php?controller=ResourcesController&action=mostrarListaResources");
         //View::render("resources/all", $data);
     }
 

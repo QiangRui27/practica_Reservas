@@ -44,3 +44,4 @@ if (count($listaTimeSlots) == 0) {
   echo "</table>";
 }
 echo "<p><a href='index.php?controller=TimeSlotsController&action=formularioInsertarTimeSlot'>Nuevo</a></p>";
+

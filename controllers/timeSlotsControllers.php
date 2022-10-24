@@ -49,7 +49,7 @@ class TimeSlotsController {
             $data["error"] = "Error al insertar";   
         }
 
-        header("Location: index.php");
+        header("Location: index.php?controller=timeSlotsController&action=mostrarListaTimeSlots");
 
     }
 
@@ -69,7 +69,7 @@ class TimeSlotsController {
 
         $result = $this -> timeSlot ->update($id, $dayOfWeek, $startTime, $endTime );
         if ($result == 1) {
-            $data["info"] = "Resource actualizado con éxito";   
+            $data["info"] = "Time actualizado con éxito";   
         } else {
             $data["error"] = "Error al modificar";
         }
@@ -81,11 +81,11 @@ class TimeSlotsController {
         $id = $_REQUEST["id"];
         $result = $this -> timeSlot -> delete($id);
         if ($result == 1) {
-            $data["info"] = "Resource borrado con éxito";   
+            $data["info"] = "Time borrado con éxito";   
         } else {
             $data["error"] = "Error al borrar";
         }
-        header("Location: index.php");
+        header("Location: index.php?controller=timeSlotsController&action=mostrarListaTimeSlots");
         //View::render("resources/all", $data);
     }
 

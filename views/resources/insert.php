@@ -32,7 +32,7 @@ foreach ($todosLosAutores as $fila) {
 echo "</select>";*/
 
 // Finalizamos el formulario
-//echo "  <input type='hidden' name='controller' value='ResourcesController'>";
+echo "  <input type='hidden' name='controller' value='ResourcesController'>";
 echo "  <input type='hidden' name='action' value='insertarResource'>";
 
 echo "	<input type='submit'></form>";

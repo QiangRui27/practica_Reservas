@@ -15,7 +15,7 @@
 
 
 // Creamos el formulario con los campos del libro
-echo "<form action = 'index.php?controller=TimeSlotsController&action=mostrarListaTimeSlots' method = 'get'>
+echo "<form action='index.php' method = 'get'>
         <input type='hidden' name='id' value=''>
         Día de la semana:<input type='text' name='dayOfWeek' value=''><br>
         Tiempo inicial:<input type='time' name='startTime' value=''><br>
@@ -31,8 +31,11 @@ foreach ($todosLosAutores as $fila) {
 echo "</select>";*/
 
 // Finalizamos el formulario
-//echo "  <input type='hidden' name='controller' value='TimeSlotsController'";
+echo "  <input type='hidden' name='controller' value='TimeSlotsController'>";
 echo "  <input type='hidden' name='action' value='insertarTimeSlot'>";
 
 echo "	<input type='submit'></form>";
+
 echo "<p><a href='index.php'>Volver</a></p>";
+
+
