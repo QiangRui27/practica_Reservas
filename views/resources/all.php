@@ -45,4 +45,4 @@ if (count($listaResources) == 0) {
   }
   echo "</table>";
 }
-echo "<p><a href='index.php?controller=ResourcesController&action=formularioInsertarResource'>Nuevo</a></p>";var_dump($controller);
+echo "<p><a href='index.php?controller=ResourcesController&action=formularioInsertarResource'>Nuevo</a></p>";
