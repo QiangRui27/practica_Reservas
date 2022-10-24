@@ -73,7 +73,7 @@ class TimeSlotsController {
         } else {
             $data["error"] = "Error al modificar";
         }
-        header("Location: index.php");
+        header("Location: index.php?controller=timeSlotsController&action=mostrarListaTimeSlots");
 
     }
 
