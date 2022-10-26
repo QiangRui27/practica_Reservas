@@ -25,7 +25,7 @@ class UsersController {
     {
         /*if (Seguridad::haySesion()) {*/
             $data["listaUsers"] = $this->user->getAll();
-            View::render("user/showUser", $data);
+            View::render("users/showUser", $data);
         /*} else {
             $data["error"] = "No tienes permiso para eso";
             View::render("usuario/login", $data);
@@ -50,7 +50,7 @@ class UsersController {
             $data["error"] = "Error al insertar";   
         }
 
-        header("realname: index.php?controller=UsersController&action=mostrarlistaUsers");
+        header("location: index.php?controller=UsersController&action=mostrarlistaUsers");
 
     }
 
@@ -75,7 +75,7 @@ class UsersController {
         } else {
             $data["error"] = "Error al modificar";
         }
-        header("realname: index.php?controller=UsersController&action=mostrarlistaUsers");
+        header("location: index.php?controller=UsersController&action=mostrarlistaUsers");
 
     }
 
@@ -87,7 +87,7 @@ class UsersController {
         } else {
             $data["error"] = "Error al borrar";
         }
-        header("realname: index.php?controller=UsersController&action=mostrarlistaUsers");
+        header("location: index.php?controller=UsersController&action=mostrarlistaUsers");
         //View::render("Users/all", $data);
     }
 

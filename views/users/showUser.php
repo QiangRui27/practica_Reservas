@@ -14,7 +14,8 @@ if (isset($data["error"])) {
 }
 
 echo "<form action='index.php'>
-        <input type='hidden' name='action' value='buscarUsers'>
+        <input type='hidden' name='controller' value='UsersController'>
+        <input type='hidden' name='action' value='buscarUser'>
         <input type='text' name='textoBusqueda'>
         <input type='submit' value='Buscar'>
       </form><br>";
@@ -39,10 +40,10 @@ if (count($listaUsers) == 0) {
     echo "<td>" . $fila->password . "</td>";
     echo "<td>" . $fila->realname . "</td>";
     echo "<td>" . $fila->type . "</td>";
-    echo "<td><a href='index.php?controller=ResourcesController&action=formularioModificarUser&id=" . $fila->id . "'>Modificar</a></td>";
-    echo "<td><a href='index.php?controller=ResourcesController&action=borrarUser&id=" . $fila->id . "'>Borrar</a></td>";
+    echo "<td><a href='index.php?controller=UsersController&action=formularioModificarUser&id=" . $fila->id . "'>Modificar</a></td>";
+    echo "<td><a href='index.php?controller=UsersController&action=borrarUser&id=" . $fila->id . "'>Borrar</a></td>";
     echo "</tr>";
   }
   echo "</table>";
 }
-echo "<p><a href='index.php?controller=ResourcesController&action=formularioInsertarUser'>Nuevo</a></p>";
+echo "<p><a href='index.php?controller=UsersController&action=formularioInsertarUser'>Nuevo</a></p>";
