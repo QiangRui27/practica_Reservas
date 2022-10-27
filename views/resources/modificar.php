@@ -26,7 +26,7 @@ echo "<form action = 'index.php' method = 'get'>
         Nombre:<input type='text' name='name' value='" . $listaResources[0]->name . "'><br>
         Description:<input type='text' name='description' value='" . $listaResources[0]->description . "'><br>
         Location:<input type='text' name='location' value='" . $listaResources[0]->location . "'><br>
-        Imagen:<input type='text' name='image' value='" . $listaResources[0]->image . "'><br>";
+        Imagen:<input type='file' name='image' value='" . $listaResources[0]->image . "'><br>";
 
 /*echo "Autores: <select name='autor[]' multiple size='3'>";
 foreach ($todosLosAutores as $fila) {

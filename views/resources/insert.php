@@ -15,12 +15,12 @@
 
 
 // Creamos el formulario con los campos del libro
-echo "<form action = 'index.php' method = 'get'>
+echo "<form action = 'index.php' method = 'post' enctype='multipart/form-data'>
         <input type='hidden' name='id' value=''>
         Nombre:<input type='text' name='name' value=''><br>
         Descripción:<input type='text' name='description' value=''><br>
         Lugar:<input type='text' name='location' value=''><br>
-        Imagen:<input type='text' name='image' value=''><br>";
+        Imagen:<input type='file' name='image' value=''><br>";
 
 /*echo "Autores: <select name='autor[]' multiple size='3'>";
 foreach ($todosLosAutores as $fila) {

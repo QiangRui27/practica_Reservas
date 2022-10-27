@@ -43,9 +43,17 @@ class ResourcesController {
         $name = $_REQUEST["name"];
         $description = $_REQUEST["description"];
         $location = $_REQUEST["location"];
-        $image = $_REQUEST["image"];
+
+        $dir = 'imagenes/';
+        $file = $dir.basename($_FILES['image']['name']);
         
-        $result = $this -> resource ->insert($name, $description, $location, $image);
+       /* if (move_uploaded_file($_FILES['image']['tmp_name'], $file)) {
+            echo 'El archivo se ha subido correctamente.';
+        } else {
+            echo 'Ha habido un error en la subida del archivo.';
+        }*/
+        
+        $result = $this -> resource ->insert($name, $description, $location, $file);
         if ($result != 1) {
             $data["error"] = "Error al insertar";   
         }
