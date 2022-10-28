@@ -42,4 +42,4 @@ echo "  <input type='hidden' name='controller' value='TimeSlotsController'>";
 
 
 echo "	<input type='submit'></form>";
-echo "<p><a href='index.php'>Volver</a></p>";
+echo "<p><a href='index.php?controller=timeSlotsController&action=mostrarListaTimeSlots'>Volver</a></p>";

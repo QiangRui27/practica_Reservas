@@ -36,6 +36,6 @@ echo "  <input type='hidden' name='action' value='insertarTimeSlot'>";
 
 echo "	<input type='submit'></form>";
 
-echo "<p><a href='index.php'>Volver</a></p>";
+echo "<p><a href='index.php?controller=timeSlotsController&action=mostrarListaTimeSlots'>Volver</a></p>";
 
 

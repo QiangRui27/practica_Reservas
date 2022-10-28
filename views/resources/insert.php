@@ -36,4 +36,4 @@ echo "  <input type='hidden' name='controller' value='ResourcesController'>";
 echo "  <input type='hidden' name='action' value='insertarResource'>";
 
 echo "	<input type='submit'></form>";
-echo "<p><a href='index.php'>Volver</a></p>";
+echo "<p><a href='index.php?controller=ResourcesController&action=mostrarListaResources'>Volver</a></p>";

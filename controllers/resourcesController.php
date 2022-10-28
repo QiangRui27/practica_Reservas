@@ -47,11 +47,11 @@ class ResourcesController {
         $dir = 'imagenes/';
         $file = $dir.basename($_FILES['image']['name']);
         
-       /* if (move_uploaded_file($_FILES['image']['tmp_name'], $file)) {
-            echo 'El archivo se ha subido correctamente.';
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $file)) {
+            $data["info"] = "Imagen subida con exito";
         } else {
-            echo 'Ha habido un error en la subida del archivo.';
-        }*/
+            $data["info"] = "Fallo al subir la imagen";;
+        }
         
         $result = $this -> resource ->insert($name, $description, $location, $file);
         if ($result != 1) {
