@@ -1,8 +1,8 @@
 <?php
 
-//session_start();
+session_start();
 
-//include_once "models/seguridad.php";
+include_once "models/seguridad.php";
 
 // Hacemos include de todos los controladores
 foreach (glob("controllers/*.php") as $file) {
@@ -13,14 +13,14 @@ foreach (glob("controllers/*.php") as $file) {
 if (isset($_REQUEST["controller"])) {
     $controller = $_REQUEST["controller"];
 } else {
-    $controller = "ResourcesController";  // Controlador por defecto
+    $controller = "UsersController";  // Controlador por defecto
 }
 
 // Miramos el valor de la variable "action", si existe. Si no, le asignamos una acción por defecto
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } else {
-    $action = "mostrarListaResources";  // Acción por defecto
+    $action = "login";  // Acción por defecto
 }
 
 // Creamos un objeto de tipo $controller y llamamos al método $action()

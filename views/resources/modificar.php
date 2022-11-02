@@ -21,7 +21,7 @@ $image = $resource->image ?? "";
 $cartel = $resource->cartel ?? "";*/
 
 // Creamos el formulario con los campos del libro
-echo "<form action = 'index.php' method = 'get'>
+echo "<form action = 'index.php' method = 'post' enctype='multipart/form-data'>
         <input type='hidden' name='id' value='" . $listaResources[0]->id . "'>
         Nombre:<input type='text' name='name' value='" . $listaResources[0]->name . "'><br>
         Description:<input type='text' name='description' value='" . $listaResources[0]->description . "'><br>

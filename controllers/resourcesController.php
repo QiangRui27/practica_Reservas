@@ -23,13 +23,16 @@ class ResourcesController {
     // --------------------------------- MOSTRAR LISTA DE LIBROS ----------------------------------------
     public function mostrarListaResources()
     {
-        /*if (Seguridad::haySesion()) {*/
+        if (Seguridad::haySesion()) {
+            if (isset($_SESSION['username'])) {
+                $data['name']= $_SESSION['username'];
+            }
             $data["listaResources"] = $this->resource->getAll();
             View::render("resources/all", $data);
-        /*} else {
+        } else {
             $data["error"] = "No tienes permiso para eso";
             View::render("usuario/login", $data);
-        }*/
+        }
     }
 
     public function formularioInsertarResource(){
@@ -75,9 +78,16 @@ class ResourcesController {
         $name = $_REQUEST["name"];
         $description = $_REQUEST["description"];
         $location = $_REQUEST["location"];
-        $image = $_REQUEST["image"];
+        $dir = 'imagenes/';
+        $file = $dir.basename($_FILES['image']['name']);
+        
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $file)) {
+            $data["info"] = "Imagen subida con exito";
+        } else {
+            $data["info"] = "Fallo al subir la imagen";;
+        }
 
-        $result = $this -> resource ->update($id, $name, $description, $location, $image);
+        $result = $this -> resource ->update($id, $name, $description, $location, $file);
         if ($result == 1) {
             $data["info"] = "Resource actualizado con éxito";   
         } else {

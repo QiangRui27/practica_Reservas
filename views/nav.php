@@ -1,4 +1,9 @@
 <hr/>
+<?php
+if (isset($data["username"])) {
+    echo "bienvenido $username";
+  }
+?>
 <nav>
     Menú de navegación: 
     <a href='index.php'>Home</a>
@@ -11,5 +16,6 @@
             echo "<a href='index.php?controller=UsuariosController&action=cerrarSesion'>Cerrar sesión</a>";
         }
     ?>-->
+
 </nav>
 <hr/>

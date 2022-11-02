@@ -101,4 +101,31 @@ class UsersController {
         View::render("users/showUser", $data);
     }
 
+
+    public function login() {
+        View::render("users/login");
+    }
+
+    // Comprueba los datos de login. Si son correctos, el modelo iniciará la sesión y
+    // desde aquí se redirige a otra vista. Si no, nos devuelve al formulario de login.
+    public function procesarFormLogin() {
+        $username = Seguridad::limpiar($_REQUEST["username"]);
+        $password = Seguridad::limpiar($_REQUEST["password"]);
+        $result = $this->user->login($username, $password);
+        if ($result) { 
+            header("Location: index.php?controller=ResourcesController&action=mostrarListaResources");
+        } else {
+            $data["error"] = "Usuario o contraseña incorrectos";
+            View::render("users/login", $data);
+        }
+    }
+
+    // Cierra la sesión y nos lleva a la vista de login
+    public function cerrarSesion() {
+        $this->usuario->cerrarSesion();
+        $data["info"] = "Sesión cerrada con éxito";
+        View::render("users/login", $data);
+    }
+ 
 }
+

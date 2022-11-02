@@ -66,4 +66,32 @@ class User extends Model
 					                    ORDER BY username");
         return $result;
     }
+
+
+    // Comprueba si $email y $passwd corresponden a un usuario registrado. Si es así, inicia usa sesión creando
+    // una variable de sesión y devuelve true. Si no, de vuelve false.
+    public function login($username, $passwd) {
+        $query = "SELECT * FROM Users WHERE username='$username' AND password='$passwd' ";
+        $result = $this->db->dataQuery($query);
+        var_dump($result);
+
+        if (count($result) == 1) {
+            foreach ($result as $user) {
+                $id= $user->id;
+                $username= $user->username;
+                $type= $user->type;
+            }
+            Seguridad::iniciarSesion($id,$username,$type);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    // Cierra una sesión (destruye variables de sesión)
+    public function cerrarSesion() {
+        Seguridad::cerrarSesion();
+    }
+
 }
