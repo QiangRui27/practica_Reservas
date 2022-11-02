@@ -5,7 +5,7 @@
 use LDAP\Result;
 
 include_once("models/resource.php");  // Modelos
-//include_once("models/TimeSlots.php");
+include_once("models/TimeSlots.php");
 include_once("view.php");
 
 class ResourcesController {
@@ -143,4 +143,17 @@ class ResourcesController {
             View::render("users/login", $data);
         }
     }
+
+    public function formularioReservarResource(){
+        if (Seguridad::haySesion()) {
+            $this->timeSlot = new TimeSlot();
+            $data["listaResources"] = $this->resource->getAll();
+            $data["listaTimeSlots"] = $this->timeSlot->getAll();
+        } else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
+        
+    }
+
 }

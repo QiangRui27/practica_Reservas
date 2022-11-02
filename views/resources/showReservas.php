@@ -31,7 +31,7 @@ if (count($listaResources) == 0) {
     echo "<th>Descripción</th>";
     echo "<th>Ubicación</th>";
     echo "<th>Imagen</th>";
-    echo "<th colspan= '3' >Opciones</th>";
+    echo "<th colspan= '2' >Opciones</th>";
 
     echo "</tr>"; 
   foreach ($listaResources as $fila) {
@@ -40,9 +40,7 @@ if (count($listaResources) == 0) {
     echo "<td>" . $fila->description . "</td>";
     echo "<td>" . $fila->location . "</td>";
     echo '<td><img src="' . $fila->image . '"width="200px" height="200px"></td>';
-    echo "<td><a href='index.php?controller=ResourcesController&action=formularioModificarResource&id=" . $fila->id . "'>Modificar</a></td>";
-    echo "<td><a href='index.php?controller=ResourcesController&action=borrarResource&id=" . $fila->id . " '>Borrar</a></td>";
-    echo "<td><a href='index.php?controller=ResourcesController&action=formularioReservarResource&id=" . $fila->id . " '>Reservar</a></td>";
+    echo "<td><a href='index.php?controller=ResourcesController&action=formularioReservarResource&id=" . $fila->id . "'>Reservar</a></td>";
     echo "</tr>";
   }
   
