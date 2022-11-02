@@ -4,6 +4,7 @@
 // Recuperamos la lista de libros
 $listaResources = $data["listaResources"];
 
+
 // Si hay algún mensaje de feedback, lo mostramos
 if (isset($data["info"])) {
   echo "<div style='color:blue'>".$data["info"]."</div>";
@@ -38,7 +39,7 @@ if (count($listaResources) == 0) {
     echo "<td>" . $fila->name . "</td>";
     echo "<td>" . $fila->description . "</td>";
     echo "<td>" . $fila->location . "</td>";
-    echo '<td><img src="' . $fila->image . '"></td>';
+    echo '<td><img src="' . $fila->image . '"width="200px" height="200px"></td>';
     echo "<td><a href='index.php?controller=ResourcesController&action=formularioModificarResource&id=" . $fila->id . "'>Modificar</a></td>";
     echo "<td><a href='index.php?controller=ResourcesController&action=borrarResource&id=" . $fila->id . " '>Borrar</a></td>";
     echo "</tr>";
