@@ -24,28 +24,29 @@ class ResourcesController {
     public function mostrarListaResources()
     {
         if (Seguridad::haySesion()) {
-            if (isset($_SESSION['username'])) {
-                $data['name']= $_SESSION['username'];
-            }
             $data["listaResources"] = $this->resource->getAll();
             View::render("resources/all", $data);
         } else {
             $data["error"] = "No tienes permiso para eso";
-            View::render("usuario/login", $data);
+            View::render("users/login", $data);
         }
     }
 
     public function formularioInsertarResource(){
-        
-        View::render("resources/insert");
-
+        if (Seguridad::haySesion()) {
+            View::render("resources/insert");
+        }else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
     }
 
 
     public function insertarResource(){
-        $name = $_REQUEST["name"];
-        $description = $_REQUEST["description"];
-        $location = $_REQUEST["location"];
+        if (Seguridad::haySesion()) {
+        $name = Seguridad::limpiar($_REQUEST["name"]);
+        $description = Seguridad::limpiar($_REQUEST["description"]);
+        $location = Seguridad::limpiar($_REQUEST["location"]);
 
         $dir = 'imagenes/';
         $file = $dir.basename($_FILES['image']['name']);
@@ -63,21 +64,31 @@ class ResourcesController {
 
         header("Location: index.php?controller=ResourcesController&action=mostrarListaResources");
 
+        }else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
     }
 
+
     public function formularioModificarResource(){
-        
+        if (Seguridad::haySesion()) {
         $data["listaResources"] = $this->resource->get($_REQUEST["id"]);
         //var_dump($data["listaResources"]);
         View::render("resources/modificar" , $data);
 
+        }else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
     }
 
     public function modificarResource(){
-        $id = $_REQUEST["id"];
-        $name = $_REQUEST["name"];
-        $description = $_REQUEST["description"];
-        $location = $_REQUEST["location"];
+        if (Seguridad::haySesion()) {
+        $id = Seguridad::limpiar($_REQUEST["id"]);
+        $name = Seguridad::limpiar($_REQUEST["name"]);
+        $description = Seguridad::limpiar($_REQUEST["description"]);
+        $location = Seguridad::limpiar($_REQUEST["location"]);
         $dir = 'imagenes/';
         $file = $dir.basename($_FILES['image']['name']);
         
@@ -95,10 +106,15 @@ class ResourcesController {
         }
         header("Location: index.php?controller=ResourcesController&action=mostrarListaResources");
 
+        }else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
     }
 
     public function borrarResource(){
-        $id = $_REQUEST["id"];
+        if (Seguridad::haySesion()) {
+        $id = Seguridad::limpiar($_REQUEST["id"]);
         $result = $this -> resource -> delete($id);
         if ($result == 1) {
             $data["info"] = "Resource borrado con éxito";   
@@ -107,16 +123,24 @@ class ResourcesController {
         }
         header("Location: index.php?controller=ResourcesController&action=mostrarListaResources");
         //View::render("resources/all", $data);
+        }else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
     }
 
     public function buscarResource() {
+        if (Seguridad::haySesion()) {
         // Recuperamos el texto de búsqueda de la variable de formulario
-        $textoBusqueda = $_REQUEST["textoBusqueda"];
+        $textoBusqueda = Seguridad::limpiar($_REQUEST["textoBusqueda"]);
         // Buscamos los libros que coinciden con la búsqueda
         $data["listaResources"] = $this->resource->search($textoBusqueda);
         $data["info"] = "Resultados de la búsqueda: <i>$textoBusqueda</i>";
         // Mostramos el resultado en la misma vista que la lista completa de libros
         View::render("resources/all", $data);
+        }else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
     }
-
 }

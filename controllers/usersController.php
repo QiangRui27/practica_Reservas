@@ -23,27 +23,31 @@ class UsersController {
     // --------------------------------- MOSTRAR LISTA DE LIBROS ----------------------------------------
     public function mostrarlistaUsers()
     {
-        /*if (Seguridad::haySesion()) {*/
+        if (Seguridad::haySesion()) {
             $data["listaUsers"] = $this->user->getAll();
             View::render("users/showUser", $data);
-        /*} else {
+        } else {
             $data["error"] = "No tienes permiso para eso";
-            View::render("usuario/login", $data);
-        }*/
+            View::render("users/login", $data);
+        }
     }
 
     public function formularioInsertarUser(){
-        
+        if (Seguridad::haySesion()) {
         View::render("users/insert");
-
+    } else {
+        $data["error"] = "No tienes permiso para eso";
+        View::render("users/login", $data);
+    }
     }
 
 
     public function insertarUser(){
-        $username = $_REQUEST["username"];
-        $password = $_REQUEST["password"];
-        $realname = $_REQUEST["realname"];
-        $type = $_REQUEST["type"];
+        if (Seguridad::haySesion()) {
+        $username = Seguridad::limpiar($_REQUEST["username"]);
+        $password = Seguridad::limpiar($_REQUEST["password"]);
+        $realname = Seguridad::limpiar($_REQUEST["realname"]);
+        $type = Seguridad::limpiar($_REQUEST["type"]);
         
         $result = $this -> user ->insert($username, $password, $realname, $type);
         if ($result != 1) {
@@ -51,23 +55,30 @@ class UsersController {
         }
 
         header("location: index.php?controller=UsersController&action=mostrarlistaUsers");
-
+    } else {
+        $data["error"] = "No tienes permiso para eso";
+        View::render("users/login", $data);
+    }
     }
 
     public function formularioModificarUser(){
-        
-        $data["listaUsers"] = $this->user->get($_REQUEST["id"]);
+        if (Seguridad::haySesion()) {
+        $data["listaUsers"] = $this->user->get(Seguridad::limpiar($_REQUEST["id"]));
         //var_dump($data["listaUsers"]);
         View::render("users/modificar" , $data);
-
+    } else {
+        $data["error"] = "No tienes permiso para eso";
+        View::render("users/login", $data);
+    }
     }
 
     public function modificarUser(){
-        $id = $_REQUEST["id"];
-        $username = $_REQUEST["username"];
-        $password = $_REQUEST["password"];
-        $realname = $_REQUEST["realname"];
-        $type = $_REQUEST["type"];
+        if (Seguridad::haySesion()) {
+        $id = Seguridad::limpiar($_REQUEST["id"]);
+        $username = Seguridad::limpiar($_REQUEST["username"]);
+        $password = Seguridad::limpiar($_REQUEST["password"]);
+        $realname = Seguridad::limpiar($_REQUEST["realname"]);
+        $type = Seguridad::limpiar($_REQUEST["type"]);
 
         $result = $this -> user ->update($id, $username, $password, $realname, $type);
         if ($result == 1) {
@@ -76,11 +87,15 @@ class UsersController {
             $data["error"] = "Error al modificar";
         }
         header("location: index.php?controller=UsersController&action=mostrarlistaUsers");
-
+    } else {
+        $data["error"] = "No tienes permiso para eso";
+        View::render("users/login", $data);
+    }
     }
 
     public function borrarUser(){
-        $id = $_REQUEST["id"];
+        if (Seguridad::haySesion()) {
+        $id = Seguridad::limpiar($_REQUEST["id"]);
         $result = $this -> user -> delete($id);
         if ($result == 1) {
             $data["info"] = "Resource borrado con éxito";   
@@ -89,16 +104,25 @@ class UsersController {
         }
         header("location: index.php?controller=UsersController&action=mostrarlistaUsers");
         //View::render("Users/all", $data);
+    } else {
+        $data["error"] = "No tienes permiso para eso";
+        View::render("users/login", $data);
+    }
     }
 
     public function buscarUser() {
+        if (Seguridad::haySesion()) {
         // Recuperamos el texto de búsqueda de la variable de formulario
-        $textoBusqueda = $_REQUEST["textoBusqueda"];
+        $textoBusqueda = Seguridad::limpiar($_REQUEST["textoBusqueda"]);
         // Buscamos los libros que coinciden con la búsqueda
         $data["listaUsers"] = $this->user->search($textoBusqueda);
         $data["info"] = "Resultados de la búsqueda: <i>$textoBusqueda</i>";
         // Mostramos el resultado en la misma vista que la lista completa de libros
         View::render("users/showUser", $data);
+    } else {
+        $data["error"] = "No tienes permiso para eso";
+        View::render("usuario/login", $data);
+    }
     }
 
 
@@ -122,7 +146,7 @@ class UsersController {
 
     // Cierra la sesión y nos lleva a la vista de login
     public function cerrarSesion() {
-        $this->usuario->cerrarSesion();
+        $this->user->cerrarSesion();
         $data["info"] = "Sesión cerrada con éxito";
         View::render("users/login", $data);
     }
