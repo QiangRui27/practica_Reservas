@@ -27,4 +27,11 @@ class Reservation extends Model
     {
         return $this->db->dataManipulation("INSERT INTO Reservations (idResource,idUser,idTimeSlot,date,remarks) VALUES ('$idResource','$idUser', '$idTimeSlot', '$date', '$remarks')");
     }
+
+
+    public function mostrarDatosReserva()
+    {
+        $result = $this->db->dataQuery("SELECT * AS datos FROM Reservation INNER JOIN Resources ON Reservation.idResource = Resources.id INNER JOIN TimeSlots ON Reservation.idTimeSlot = TimeSlots.id ORDER BY Resources.name");
+        return $result[0]->datos;
+    }
 }
