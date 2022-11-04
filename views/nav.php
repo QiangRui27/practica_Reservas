@@ -9,7 +9,7 @@
 
 <nav>
     Menú de navegación: 
-    <a href='index.php?controller=ResourcesController&action=mostrarListaResources'>Home</a>
+    <a href='index.php?controller=ResourcesController&action=mostrarListaReservas'>Home</a>
     <a href='index.php?controller=ResourcesController&action=mostrarListaResources'>Resources</a>
     <a href='index.php?controller=timeSlotsController&action=mostrarListaTimeSlots'>Horarios</a>
     <a href='index.php?controller=usersController&action=mostrarListaUsers'>Usuarios</a>

@@ -3,7 +3,9 @@
 
 // Recuperamos la lista de libros
 $listaResources = $data["listaResources"];
-
+$listaTimeSlot = $data["listaTimeSlot"];
+$listaReservas = $data["listaReservas"];
+var_dump($listaReservas);
 
 // Si hay algún mensaje de feedback, lo mostramos
 if (isset($data["info"])) {
@@ -14,37 +16,41 @@ if (isset($data["error"])) {
   echo "<div style='color:red'>".$data["error"]."</div>";
 }
 
-echo "<form action='index.php'>
+/*echo "<form action='index.php'>
         <input type='hidden' name='action' value='buscarResource'>
         <input type='text' name='textoBusqueda'>
         <input type='submit' value='Buscar'>
-      </form><br>";
+      </form><br>";*/
 
 // Ahora, la tabla con los datos de los libros
-if (count($listaResources) == 0) {
+if (count($listaReservas) == 0) {
   echo "No hay datos";
 } else {
   echo "<table  border ='1'>";
     echo "<tr>";
 
-    echo "<th>Nombre</th>";
-    echo "<th>Descripción</th>";
-    echo "<th>Ubicación</th>";
-    echo "<th>Imagen</th>";
+    echo "<th>idResource</th>";
+    echo "<th>idUser</th>";
+    echo "<th>idTimeSlot</th>";
+    echo "<th>date</th>";
+    echo "<th>Remarks</th>";
     echo "<th colspan= '2' >Opciones</th>";
 
     echo "</tr>"; 
-  foreach ($listaResources as $fila) {
+  foreach ($listaReservas as $fila) {
     echo "<tr>";
-    echo "<td>" . $fila->name . "</td>";
-    echo "<td>" . $fila->description . "</td>";
-    echo "<td>" . $fila->location . "</td>";
-    echo '<td><img src="' . $fila->image . '"width="200px" height="200px"></td>';
-    echo "<td><a href='index.php?controller=ResourcesController&action=formularioReservarResource&id=" . $fila->id . "'>Reservar</a></td>";
+    echo "<td>" . $fila->idResource . "</td>";
+    echo "<td>" . $fila->idUser . "</td>";
+    echo "<td>" . $fila->idTimeSlot . "</td>";
+    echo "<td>" . $fila->date . "</td>";
+    echo "<td>" . $fila->remarks . "</td>";
+    
+    echo "<td><a href='index.php?controller=ResourcesController&action=formularioModificarReserva&id=" . $fila->idResource . "'>Modificar</a></td>";
+    echo "<td><a href='index.php?controller=ResourcesController&action=BorrarReserva&id=" . $fila->idResource . "'>Borrar</a></td>";
     echo "</tr>";
   }
   
   echo "</table>";
 }
-echo "<p><a href='index.php?controller=ResourcesController&action=formularioInsertarResource'>Nuevo</a></p>";
+
 

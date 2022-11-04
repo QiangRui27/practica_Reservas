@@ -67,4 +67,10 @@ class Resource extends Model
 					                    ORDER BY name");
         return $result;
     }
+
+    public function insertReserva($id, $idUser, $idTimeSlot, $date, $remarks)
+    {
+        
+        return $this->db->dataManipulation("INSERT INTO Reservations (idResource,idUser,idTimeSlot,remarks) VALUES ('$id','$idUser', '$idTimeSlot', '$date', '$remarks')");
+    }
 }

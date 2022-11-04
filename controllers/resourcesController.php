@@ -7,6 +7,7 @@ use LDAP\Result;
 include_once("models/resource.php");  // Modelos
 include_once("models/timeSlot.php");
 include_once("models/reservation.php");
+
 include_once("view.php");
 
 class ResourcesController {
@@ -17,7 +18,8 @@ class ResourcesController {
     public function __construct(){
 
         $this->resource = new Resource();
-        //$this->timeSlot = new TimeSlot();
+        $this->timeSlot = new TimeSlot();
+        $this->reservation = new Reservation();
     
     }
 
@@ -147,7 +149,7 @@ class ResourcesController {
 
     public function formularioReservarResource(){
         if (Seguridad::haySesion()) {
-            $this->timeSlot = new TimeSlot();
+            
             $data["listaResources"] = $this->resource->get($_REQUEST["id"]);
             $data["listaTimeSlots"] = $this->timeSlot->getAll();
             View::render("resources/insertReservas", $data);
@@ -157,20 +159,35 @@ class ResourcesController {
         }
         
     }
-    public function isertarReserva(){
+    public function insertarReserva(){
         if (Seguridad::haySesion()) {
         $idResource = Seguridad::limpiar($_REQUEST["idResource"]);
         $idUser = Seguridad::limpiar($_SESSION["id"]);
         $idTimeSlot = Seguridad::limpiar($_REQUEST["idTimeSlot"]);
         $date = Seguridad::limpiar($_REQUEST["date"]);
         $remarks = Seguridad::limpiar($_REQUEST["remarks"]);
+       
         
-        $result = $this -> reservation ->insert($idResource, $idUser, $idTimeSlot, $date, $remarks);
+        $result = $this -> reservation ->insertReserva($idResource, $idUser, $idTimeSlot, $date, $remarks);
+
         if ($result != 1) {
             $data["error"] = "Error al insertar";   
         }
 
-        header("Location: index.php?controller=timeSlotsController&action=mostrarListaTimeSlots");
+        header("Location: index.php?controller=resourcesController&action=mostrarListaReservas");
+        } else {
+            $data["error"] = "No tienes permiso para eso";
+            View::render("users/login", $data);
+        }
+    }
+
+    public function mostrarListaReservas()
+    {
+        if (Seguridad::haySesion()) {
+            $data["listaResources"] = $this->resource->getAll();
+            $data["listaReservas"] = $this->reservation->getAll();
+            $data["listaTimeSlot"] = $this->timeSlot->getAll();
+            View::render("resources/showReservas", $data);
         } else {
             $data["error"] = "No tienes permiso para eso";
             View::render("users/login", $data);
