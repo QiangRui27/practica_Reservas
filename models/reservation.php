@@ -31,7 +31,12 @@ class Reservation extends Model
 
     public function mostrarDatosReserva()
     {
-        $result = $this->db->dataQuery("SELECT * AS datos FROM Reservation INNER JOIN Resources ON Reservation.idResource = Resources.id INNER JOIN TimeSlots ON Reservation.idTimeSlot = TimeSlots.id ORDER BY Resources.name");
-        return $result[0]->datos;
+        $result = $this->db->dataQuery("SELECT * FROM `Reservations` INNER JOIN Resources ON Reservations.idResource = Resources.id INNER JOIN TimeSlots ON Reservations.idTimeSlot = TimeSlots.id INNER JOIN Users ON Reservations.idUser = Users.id ORDER BY Resources.name ");
+        return $result;
     }
+    
+    public function deleteReserva( $idTimeSlot, $date) {
+        $result = $this->db->dataManipulation("DELETE FROM Reservations WHERE idTimeSlot = $idTimeSlot = idTimeSlot AND  date= $date");
+        return $result;
+      }
 }
