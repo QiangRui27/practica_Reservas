@@ -194,17 +194,14 @@ class ResourcesController {
 
     public function borrarReserva(){
         if (Seguridad::haySesion()) {
-            $idTimeSlot = Seguridad::limpiar($_REQUEST["idTimeSlot"]);
-            $date = Seguridad::limpiar($_REQUEST["date"]);
-            
-        $result = $this -> reservation -> deleteReserva($idTimeSlot, $date);
+            $idReserva = Seguridad::limpiar($_REQUEST["idReserva"]);
+            $result = $this -> reservation -> deleteReserva($idReserva);
         if ($result == 1) {
             $data["info"] = "Resource borrado con éxito";   
         } else {
             $data["error"] = "Error al borrar";
         }
         header("Location: index.php?controller=ResourcesController&action=mostrarListaReservas");
-        //View::render("resources/all", $data);
         }else {
             $data["error"] = "No tienes permiso para eso";
             View::render("users/login", $data);

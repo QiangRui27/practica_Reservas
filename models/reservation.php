@@ -35,8 +35,8 @@ class Reservation extends Model
         return $result;
     }
     
-    public function deleteReserva( $idTimeSlot, $date) {
-        $result = $this->db->dataManipulation("DELETE FROM Reservations WHERE idTimeSlot = $idTimeSlot = idTimeSlot AND  date= $date");
+    public function deleteReserva( $idReserva) {
+        $result = $this->db->dataManipulation("DELETE FROM Reservations WHERE idReserva = $idReserva");
         return $result;
       }
 }

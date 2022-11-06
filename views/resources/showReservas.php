@@ -34,7 +34,7 @@ if (count($listaDatos) == 0) {
     echo "<th>Fecha</th>";
     echo "<th>Dia y Hora</th>";
     echo "<th>Remarks</th>";
-    echo "<th colspan= '2' >Opciones</th>";
+    echo "<th>Cancelación</th>";
 
     echo "</tr>"; 
   foreach ($listaDatos as $fila) {
@@ -46,8 +46,7 @@ if (count($listaDatos) == 0) {
     echo "<td>" . $fila->dayOfWeek ." de ". $fila->startTime ." a ". $fila->endTime."</td>";
     echo "<td>" . $fila->remarks . "</td>";
     
-    echo "<td><a href='index.php?controller=ResourcesController&action=formularioModificarReserva&id=" . $fila->idTimeSlot . "'>Modificar</a></td>";
-    echo "<td><a href='index.php?controller=ResourcesController&action=borrarReserva&idTimeSlot=" . $fila->idTimeSlot ."&date=". $fila->date . "'>Borrar</a></td>";
+    echo "<td><a href='index.php?controller=ResourcesController&action=borrarReserva&idReserva=" . $fila->idReserva . "'>Cancelar</a></td>";
     echo "</tr>";
   }
   
