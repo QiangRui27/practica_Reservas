@@ -56,4 +56,4 @@ echo "  <input type='hidden' name='controller' value='UsersController'>";
 
 
 echo "	<input type='submit'></form>";
-echo "<p><a href='index.php'>Volver</a></p>";
+echo "<p><a href='index.php?controller=usersController&action=mostrarListaUsers'>Volver</a></p>";
