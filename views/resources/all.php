@@ -15,6 +15,7 @@ if (isset($data["error"])) {
 }
 
 echo "<form action='index.php'>
+  <input type='hidden' name='controller' value='resourcesController'>
         <input type='hidden' name='action' value='buscarResource'>
         <input type='text' name='textoBusqueda'>
         <input type='submit' value='Buscar'>
