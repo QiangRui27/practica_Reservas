@@ -1,4 +1,4 @@
-<h1>Control de acceso</h1>
+<h1>LOGIN</h1>
 
 <?php
 if (isset($data["error"])) {
